@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name = "viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@500&display=swap">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+		  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+		  crossorigin="anonymous" 
+		  referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="style.css"> 
+	<title>Number Converter</title>
+	<script>
+	//first function
+		function change()
+		{
+			var x = document.getElementById("input1").value;
+			document.getElementById("change").innerHTML = "Enter " + x + " Number: " ;
+			var y = document.getElementById("input2").value;
+			document.getElementById("title").innerHTML = x +" to " + y ;
+		}
+	
+	//second function
+		function convert()
+		{
+			var input = document.getElementById("number").value;
+			var inputFormat = document.getElementById("input1").value;
+			var outputFormat = document.getElementById("input2").value;
+	
+	//input
+			var decimal=0;
+			if (inputFormat === "Binary") 
+			{
+				decimal = parseInt(input, 2);
+			} 
+			
+			else if (inputFormat === "Decimal") 
+			{
+				decimal = parseInt(input, 10);
+			} 
+			
+			else if (inputFormat === "Hexadecimal") {
+				decimal = parseInt(input, 16);
+			} 
+			
+	//Output
+	
+			if (outputFormat === "Binary") 
+			{
+				resultTextarea1.value = decimal;
+				resultTextarea2.value = decimal.toString(16).toUpperCase();
+				resultTextarea3.value = decimal.toString(2);
+			} 
+			
+			else if (outputFormat === "Decimal") 
+			{
+				resultTextarea1.value = decimal;
+				resultTextarea2.value = decimal.toString(16).toUpperCase();
+				resultTextarea3.value = decimal.toString(2);
+			} 
+		 
+			else if (outputFormat === "Hexadecimal") 
+			{
+				resultTextarea1.value = decimal;
+				resultTextarea2.value = decimal.toString(16).toUpperCase();
+				resultTextarea3.value = decimal.toString(2);
+			}
+
+			else {
+				resultTextarea1.value = "Invalid output format.";
+				resultTextarea2.value = "Invalid output format.";
+				resultTextarea3.value = "Invalid output format.";
+			}
+		}//end of convert function
+		
+		//begin reset function
+		function reset() 
+		{
+			  document.getElementById("number").value = "";
+			  document.getElementById("resultTextarea1").value = "";
+			  document.getElementById("resultTextarea2").value = "";
+			  document.getElementById("resultTextarea3").value = "";
+		}//end of reset function
+		
+		//begin of swap function
+		function swap() 
+		{
+			  var input1 = document.getElementById("input1");
+			  var input2 = document.getElementById("input2");
+			  var temp = input1.value;
+			  input1.value = input2.value;
+			  input2.value = temp;
+			  
+			  change();
+		}
+	</script>
+	
+</head>
+<body>
+	<div class = "box">
+		<!--logo-->
+		<div class ="logo-box">
+			<a href ="index.html">
+				<img src="NAIZ.png" alt="logo" title="NAIZ website">
+			</a>
+		</div>
+			<!--navigation-->
+		<nav> 
+			<div class="nav"><!--navigation link box-->
+				<ul>
+					<li><a href="index.html"><i class="fa fa-home"></i> Home </a></li>
+					<li><a href="about.html" ><i class="fa fa-info-circle"></i> About </a></li>
+				</ul>
+			</div>
+		</nav>
+		<h1><i class="fa-solid fa-calculator"></i> Number Converter</h1>	
+		<div class="form-boxes">
+		
+			<div class="title">
+				<h2 id="title">Binary to Decimal </h2>
+			</div>
+		<div class="box1">
+			<!--from-->
+			<div class="form-group">
+				<label for="input1">From:</label>
+				<select id="input1" onchange="change()" >
+					<option value="Binary" selected>Binary</option>
+					<option value="Decimal" >Decimal</option>
+					<option value="Hexadecimal" >Hexadecimal</option>
+				</select>
+				
+			</div>
+					
+			<div class="form-group">
+			<!--To-->
+				<label for="input2" >To:</label>
+				<select id="input2" onchange="change()">
+					<option value="Binary" selected>Binary</option>
+					<option value="Decimal" >Decimal</option>
+					<option value="Hexadecimal" >Hexadecimal</option>
+				</select>
+			</div>
+		</div>
+		
+		
+			<!--Enter number-->
+			<div class="form-group">
+				<label for="num1"><p id="change"> Enter Binary Number:</p></label>
+				<input type ="text" id="number" step="any" required>
+			</div>
+			
+			<!--button-->
+			<div class="form-group-buttons">
+				<button type="button" title="Convert" class="btn success" onclick="convert()"><i class="fa-solid fa-equals"></i> Convert</button>
+				<button type="reset" title="Reset" class="btn second" onclick="reset()"><i class="fa fa-times"></i> Reset</button>
+				<button type="button" title="Swap" class="btn second" onclick="swap()"><i class="fa fa-exchange"></i> Swap</button>
+			</div>
+			
+			<h3>Output:</h3>
+			<!--Result decimal-->
+			<div class="form-group">
+				<label for="result1">Decimal number:</label>
+				<textarea id="resultTextarea1" rows="2" readonly></textarea>
+			</div>
+				
+			<!--Result hexadecimal-->
+			<div class="form-group">
+				<label for="result2">Hexadecimal number: </label>
+				<textarea id="resultTextarea2" rows="2" readonly></textarea>
+			</div>
+			
+			<!--Result binary-->
+			<div class="form-group">
+				<label for="result3">Binary number: </label>
+				<textarea id="resultTextarea3" rows="2" readonly></textarea>
+			</div>
+		</div>
+		
+		<!--copyright-->
+			<div class="footer-box">
+					<footer>
+						<div class="footer">
+							<p>Copyright &copy;2023 <span>NAIZ.</span> All rights reserved.</p>
+						</div>
+					</footer>
+			</div>
+	</div>
+</body>
+</html>
